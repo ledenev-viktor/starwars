@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, Flex, Spin } from 'antd';
 import { Input, Modal, FormEdits, NavLink } from '../../ui';
 import { EditOutlined } from '@ant-design/icons';

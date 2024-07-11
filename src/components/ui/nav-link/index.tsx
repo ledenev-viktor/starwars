@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Flex } from 'antd';
-import { CSSProperties, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../../../styles/variables';
 
