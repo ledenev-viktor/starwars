@@ -35,13 +35,22 @@ export const HeroProperty = styled(HeroPropertyBase)`
     display: inline-flex;
     align-items: center;
     color: ${COLORS.white};
-    font-size: 20px;
+    font-size: 25px;
     line-height: 1;
     gap: 10px;
+    justify-content: space-between;
+    transition: all .3s ease;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+    }
 
     &:not(:last-child) {
       margin-bottom: 10px;
     }
+  }
+  &:hover {
+    scale: 1.05;
   }
 `;
 

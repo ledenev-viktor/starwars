@@ -24,6 +24,6 @@ export const HeroPropertyModal = styled(HeroPropertyModalBase)`
     display: inline-block;
     color: ${COLORS.white};
     margin-bottom: 5px;
-    font-size: 25px;
+    font-size: 18px;
   }
 `;

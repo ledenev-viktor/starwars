@@ -9,13 +9,15 @@ type CardProps = {
   className?: string;
   href?: string;
   children: ReactNode;
+  edited?: boolean;
 };
 
-const CardBase: FC<CardProps> = ({ className, href, children }) => {
+const CardBase: FC<CardProps> = ({ className, href, children, edited }) => {
   return (
     <CardAntd className={className}>
       {
         <>
+          {edited && <div className='edited'>edited</div>}
           <span className="link-text">{children}</span>
           {href && <Link className="link" to={href}></Link>}
         </>
@@ -27,6 +29,14 @@ const CardBase: FC<CardProps> = ({ className, href, children }) => {
 export const Card = styled(CardBase)`
   position: relative;
   background: ${COLORS.lucentBlack};
+
+  & .edited {
+    position: absolute;
+    font-size: 12px;
+    top: 3px;
+    right: 10px;
+    color: ${COLORS.lucentWhite}
+  }
 
   & .ant-card-body {
     padding: 20px 10px;

@@ -1,18 +1,49 @@
-import { AutoComplete as AutoCompleteAntd } from 'antd';
+import { AutoComplete as AutoCompleteAntd, AutoCompleteProps } from 'antd';
 import styled from '@emotion/styled';
 import { COLORS } from '~styles/variables';
+import { FC } from 'react';
 
-export const AutoComplete = styled(AutoCompleteAntd)`
+interface AutoCompleteBase extends AutoCompleteProps {
+  className?: string;
+  sizeMode?: 'normal' | 'big';
+}
+
+const AutoCompleteBase: FC<AutoCompleteBase> = ({
+  className,
+  sizeMode = 'normal',
+  ...props
+}) => {
+  return (
+    <AutoCompleteAntd
+      {...props}
+      className={`${className} ${sizeMode}`.trim()}
+    />
+  );
+};
+
+export const AutoComplete = styled(AutoCompleteBase)`
   &.ant-select-outlined:not(.ant-select-customize-input) {
-      display: inline-block;
-      width: 100%;
-      height: 60px;
+    display: inline-block;
+    width: 100%;
     & .ant-select-selector {
-      font-size: 25px;
       background: ${COLORS.lucentBlack};
       color: ${COLORS.white};
-      font-size: 18px;
+    }
+    &.normal {
+      height: 35px;
+      & .ant-select-selector {
+        font-size: 18px;
+      }
+    }
+    &.big {
       height: 60px;
+      font-size: 25px;
+      & .ant-select-selector {
+        font-size: 25px;
+      }
+      & input {
+        font-size: 25px;
+      }
     }
 
     &.ant-select-outlined:not(.ant-select-disabled):not(
@@ -27,12 +58,11 @@ export const AutoComplete = styled(AutoCompleteAntd)`
         .ant-select-customize-input
       ):not(.ant-pagination-size-changer)
       .ant-select-selector {
-        border-color: ${COLORS.white};
+      border-color: ${COLORS.white};
     }
 
     & input {
-      font-size: 25px;
-
+      font-size: 18px;
       &:-internal-autofill-selected,
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
@@ -58,17 +88,5 @@ export const AutoComplete = styled(AutoCompleteAntd)`
         transition: color 0.3s ease;
       }
     }
-
-    /* &.ant-input-outlined {
-      border-color: ${COLORS.white};
-      &:focus,
-      &:focus-within,
-      &:hover {
-        background: ${COLORS.lucentBlack};
-        &::placeholder {
-          color: ${COLORS.white};
-        }
-      }
-    } */
   }
 `;

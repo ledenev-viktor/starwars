@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Flex, Spin, Typography } from 'antd';
-import { NavLink } from '~ui';
+import { Button, Flex } from 'antd';
+import { BreadCrump, BreadCrumpLink, NavLink, Spin } from '~ui';
 import { EditOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import { useFetchPeopleDetail, useLocalStorageState } from '~hooks';
@@ -72,7 +72,13 @@ const DetailContentBase = ({ className }: { className?: string }) => {
     <Flex className={className} vertical>
       {detailDataState && (
         <>
-          <Flex vertical>
+          <BreadCrump
+            items={[
+              { title: <BreadCrumpLink href={'/'} label="Home" /> },
+              { title: <BreadCrumpLink label={detailDataState.name} /> },
+            ]}
+          />
+          <Flex className="hero-property-list" vertical>
             <HeroProperty label="name" value={detailDataState.name} />
             <HeroProperty label="mass" value={detailDataState.mass} />
             <HeroProperty
@@ -91,7 +97,6 @@ const DetailContentBase = ({ className }: { className?: string }) => {
           </Flex>
         </>
       )}
-      <NavLink href={'/'}>Home</NavLink>
       {editData && (
         <>
           <Button className="edit-button" onClick={showModal}>
@@ -118,13 +123,24 @@ const DetailContentBase = ({ className }: { className?: string }) => {
 export const DetailContent = styled(DetailContentBase)`
   position: relative;
 
+  & .hero-property-list {
+    min-width: 300px;
+    margin: 15px auto 0;
+    @media screen and (max-width: 767px) {
+      min-width: auto;
+    }
+  }
+
   & .edit-button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -30px;
+    right: -10px;
     background: ${COLORS.lucentBlack};
     color: ${COLORS.lucentWhite};
     border-color: ${COLORS.lucentWhite};
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 
     &:not(:disabled):not(.ant-btn-disabled):hover {
       background: ${COLORS.lucentBlack};

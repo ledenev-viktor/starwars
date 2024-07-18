@@ -21,7 +21,7 @@ export const ModalHeroBase = ({
       onOk={modalProps.onOk}
       onCancel={modalProps.onCancel}
     >
-      <Flex className={className} vertical>
+      <Flex gap={20} className={className} vertical>
         <HeroPropertyModal label="name">
           <Input
             value={contentProps.editData.name}
@@ -38,7 +38,7 @@ export const ModalHeroBase = ({
             }
           />
         </HeroPropertyModal>
-        <HeroPropertyModal label="hero-property">
+        <HeroPropertyModal label="hair color">
           <Input
             value={contentProps.editData.hair_color}
             onChange={event =>
@@ -71,10 +71,16 @@ export const ModalHeroBase = ({
             onChange={value =>
               contentProps.onChangeDetailState(value, 'gender')
             }
-            filterOption={(inputValue, option) =>
-              option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
-              -1
-            }
+            filterOption={(inputValue, option) => {
+              if (!option!.value || typeof option!.value === 'number')
+                return false;
+
+              return (
+                option!.value
+                  .toUpperCase()
+                  .indexOf(inputValue.toUpperCase()) !== -1
+              );
+            }}
           />
         </HeroPropertyModal>
       </Flex>

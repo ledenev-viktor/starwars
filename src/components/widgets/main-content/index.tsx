@@ -4,11 +4,14 @@ import { useScreenDetector } from '~hooks/useScreenDetector';
 import { ListDesktop } from './listDesktop';
 import { ListMobile } from './listMobile';
 import { useDebounceSearch } from '~hooks/useDebounceSearch';
+import { SetStateAction } from 'react';
 
 export const MainContent = () => {
   const { isMobile } = useScreenDetector();
   const { searchValue, setSearchValue, debouncedSearchValue } =
     useDebounceSearch(300);
+
+  
 
   return (
     <Flex vertical gap={20}>
@@ -19,9 +22,12 @@ export const MainContent = () => {
         Stars Wars
       </Typography.Title>
       <Input
+        sizeMode="big"
         placeholder="Who is the skywalker's father?"
         value={searchValue}
-        onChange={event => setSearchValue(event.target.value)}
+        onChange={(event: { target: { value: SetStateAction<string> } }) =>
+          setSearchValue(event.target.value)
+        }
       />
       {isMobile ? (
         <ListMobile searchValue={debouncedSearchValue} />

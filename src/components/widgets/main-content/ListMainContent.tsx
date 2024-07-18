@@ -5,7 +5,7 @@ import { Card } from '~ui';
 export const ListMainContent = ({ dataSource = [] }) => {
   return (
     <List
-      style={{minHeight: '156px'}}
+      style={{ minHeight: '156px' }}
       grid={{
         gutter: 16,
         xs: 1,
@@ -23,13 +23,18 @@ export const ListMainContent = ({ dataSource = [] }) => {
         ),
       }}
       dataSource={dataSource}
-      renderItem={(item: { [key: string]: string }) => (
-        <List.Item>
-          <Card href={'/people/' + item.url.split('/').find(Number)}>
-            {item.name}
-          </Card>
-        </List.Item>
-      )}
+      renderItem={(item: { [key: string]: string }) => {
+        const id = item.url.split('/').find(Number);
+        const edited = !!localStorage.getItem(String(id))
+
+        return (
+          <List.Item>
+            <Card edited={edited} href={'/people/' + id}>
+              {item.name}
+            </Card>
+          </List.Item>
+        );
+      }}
     />
   );
 };

@@ -1,16 +1,21 @@
 import { Typography } from 'antd';
-import { NavLink } from '~ui';
+import { BreadCrump, BreadCrumpLink, NavLink } from '~ui';
 
 export const NotFound = () => {
   return (
     <>
+      <BreadCrump
+        items={[
+          { title: <BreadCrumpLink href={'/'} label="Home" /> },
+          { title: <BreadCrumpLink label={'404'} /> },
+        ]}
+      />
       <Typography.Title
         style={{ color: '#fff', textAlign: 'center' }}
         level={1}
       >
         Not found
       </Typography.Title>
-      <NavLink href={'/'}>Home</NavLink>
     </>
   );
 };
