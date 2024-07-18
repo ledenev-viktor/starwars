@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Pagination as PaginationAntd } from 'antd';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 export const Pagination = styled(PaginationAntd)`
   & .ant-pagination-item a {

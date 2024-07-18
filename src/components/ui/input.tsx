@@ -1,15 +1,48 @@
-import { Input as InputAntd } from 'antd';
+import { Input as InputAntd, InputProps } from 'antd';
 import styled from '@emotion/styled';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
+import { FC } from 'react';
+import { BREAKPOINTS } from '~styles/breakpoints';
 
-export const Input = styled(InputAntd)`
+interface InputBaseProps extends InputProps {
+  className?: string;
+  sizeMode?: 'big' | 'normal';
+}
+
+const InputBase: FC<InputBaseProps> = ({
+  className,
+  sizeMode = 'normal',
+  ...props
+}) => {
+  return <InputAntd {...props} className={`${className} ${sizeMode}`.trim()} />;
+};
+
+export const Input = styled(InputBase)`
   & {
     width: 100%;
-    height: 40px;
-    font-size: 16px;
     background: ${COLORS.lucentBlack};
     color: ${COLORS.white};
-    
+
+    &[type=color] {
+      padding: 0;
+      border: none;
+      cursor: pointer;
+    }
+
+    &.normal {
+      height: 35px;
+      font-size: 18px;
+    }
+
+    &.big {
+      height: 60px;
+      font-size: 25px;
+
+      @media screen and (max-width: ${BREAKPOINTS.mobile}) {
+        font-size: 18px;
+      }
+    }
+
     &:-internal-autofill-selected,
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
@@ -32,7 +65,7 @@ export const Input = styled(InputAntd)`
     }
     &::placeholder {
       color: ${COLORS.lucentWhite};
-      transition: color .3s ease;
+      transition: color 0.3s ease;
     }
     &.ant-input-outlined {
       border-color: ${COLORS.white};

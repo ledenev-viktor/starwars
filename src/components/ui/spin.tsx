@@ -1,6 +1,6 @@
 import { Spin as SpinAnt } from 'antd';
 import styled from '@emotion/styled';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 type SpinProps = {
   template?: 'light' | 'dark';

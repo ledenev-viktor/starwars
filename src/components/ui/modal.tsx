@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Modal as ModalAntd } from 'antd';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 export const ModalBase = ({ className, children, ...otherProps }: any) => {
   return (
@@ -11,8 +11,11 @@ export const ModalBase = ({ className, children, ...otherProps }: any) => {
 };
 
 export const Modal = styled(ModalBase)`
+  & .ant-modal-title {
+    font-size: 30px;
+  }
   & .ant-modal-content {
-    background: ${COLORS.black};
+    background: ${COLORS.strongBlack};
   }
   & .ant-modal-header,
   & .ant-modal-title {
@@ -37,5 +40,14 @@ export const Modal = styled(ModalBase)`
       background: ${COLORS.lucentBlack};
       border-color: ${COLORS.white};
     }
+  }
+
+  & .ant-modal-footer {
+    margin-top: 30px;
+  }
+
+  & .ant-btn {
+    font-size: 18px;
+    height: 40px;
   }
 `;

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
 import { Layout as LayoutAntd } from 'antd';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
+import { BREAKPOINTS } from '~styles/breakpoints';
 
 const LayoutBase = ({
   className,
@@ -27,11 +28,15 @@ export const Layout = styled(LayoutBase)`
   padding: 20px;
 
   & .inner {
-    padding: 30px;
+    padding: 70px 30px;
     max-width: 980px;
     width: 100%;
     box-sizing: border-box;
     background: ${COLORS.black};
     border-radius: 20px;
+
+    @media screen and (max-width: ${BREAKPOINTS.mobile}) {
+      padding: 40px 20px 40px;
+    }
   }
 `;

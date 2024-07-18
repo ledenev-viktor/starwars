@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Detail, NotFound } from './pages';
-import { Global } from '@emotion/react';
-import { globalStyles } from './styles/global-styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Layout, Background } from './components/ui/';
+import { Home, Detail, NotFound } from '~pages';
+import { Global } from '@emotion/react';
+import { globalStyles } from '~styles/global-styles';
+import { Layout } from './components/ui/index';
+import { Background } from './components/ui/index';
 
 const router = createBrowserRouter([
   {
@@ -17,9 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: (
-      <NotFound />
-    ),
+    element: <NotFound />,
   },
 ]);
 
