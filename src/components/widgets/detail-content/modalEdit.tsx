@@ -1,19 +1,24 @@
 import styled from '@emotion/styled';
-import { Flex, Select } from 'antd';
+import { Flex, ModalProps } from 'antd';
 import { Input, Modal, AutoComplete } from '~ui';
 import { HeroPropertyModal } from './hero-property-modal';
+import { FC } from 'react';
+import { DetailInfo } from './types';
 
-export const ModalHeroBase = ({
+interface ModalEditBase {
+  modalProps: ModalProps;
+  contentProps: {
+    onChangeDetailState: (value: string, name: string) => void;
+    editData: DetailInfo;
+  };
+  className?: string;
+}
+
+export const ModalEditBase: FC<ModalEditBase> = ({
   modalProps,
   contentProps,
   className,
-}: {
-  modalProps: any;
-  contentProps: any;
-  className?: string;
 }) => {
-  console.log('modalProps', modalProps.isModalOpen);
-
   return (
     <Modal
       title={modalProps.title}
@@ -88,4 +93,4 @@ export const ModalHeroBase = ({
   );
 };
 
-export const ModalHero = styled(ModalHeroBase)``;
+export const ModalEdit = styled(ModalEditBase)``;

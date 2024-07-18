@@ -3,9 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig(({command, mode}) => {
-  console.log(command, mode)
-
+export default defineConfig(({mode}) => {
   const commonConfig = {
     define: {
       '__BASE_URL__': JSON.stringify('https://swapi.dev/api/people/'),

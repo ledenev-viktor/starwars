@@ -6,12 +6,9 @@ import { EditOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import { useFetchPeopleDetail, useLocalStorageState } from '~hooks';
 import { COLORS } from '~styles/variables';
-import { ModalHero } from './modalEdit';
+import { ModalEdit } from './modalEdit';
 import { HeroProperty } from './hero-property';
-
-type DetailInfo = {
-  [key: string]: string;
-};
+import { DetailInfo } from './types';
 
 const DetailContentBase = ({ className }: { className?: string }) => {
   const { id } = useParams();
@@ -39,7 +36,6 @@ const DetailContentBase = ({ className }: { className?: string }) => {
   }, [detailDataState]);
 
   const showModal = () => {
-    console.log('show', isModalOpen);
     setIsModalOpen(true);
   };
 
@@ -102,7 +98,7 @@ const DetailContentBase = ({ className }: { className?: string }) => {
           <Button className="edit-button" onClick={showModal}>
             <EditOutlined />
           </Button>
-          <ModalHero
+          <ModalEdit
             modalProps={{
               title: 'Edits',
               open: isModalOpen,

@@ -4,11 +4,7 @@ import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 export const useFetchInfinitePeople = (searchValue = '') => {
   return useInfiniteQuery({
     queryKey: ['li', searchValue],
-    // queryFn: async (queryObj) => {
-    //   return await fetchListItems({pageParam: queryObj, search: searchValue});
-    // },
     queryFn: async ({ pageParam }, search = searchValue) => {
-        console.log('useFetchInfinitePeople')
       const { data: response } = await axios(__BASE_URL__, {
         params: { page: pageParam, search },
       });

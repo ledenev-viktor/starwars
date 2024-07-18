@@ -29,7 +29,7 @@ interface BreadCrumpProps extends BreadcrumbProps {
   id?: string;
 }
 
-export const BreadCrump: FC<BreadCrumpProps> = ({ name, id, ...props }) => (
+export const BreadCrump: FC<BreadCrumpProps> = ({ ...props }) => (
   <ConfigProvider
     theme={{
       components: {

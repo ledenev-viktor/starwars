@@ -1,8 +1,18 @@
 import styled from '@emotion/styled';
-import { Modal as ModalAntd } from 'antd';
+import { Modal as ModalAntd, ModalProps } from 'antd';
+import { FC, ReactNode } from 'react';
 import { COLORS } from '~styles/variables';
 
-export const ModalBase = ({ className, children, ...otherProps }: any) => {
+export interface ModalBaseProps extends ModalProps {
+  className?: string;
+  children: ReactNode;
+}
+
+export const ModalBase: FC<ModalBaseProps> = ({
+  className,
+  children,
+  ...otherProps
+}) => {
   return (
     <ModalAntd className={className} {...otherProps}>
       {children}

@@ -8,7 +8,6 @@ export const useFetchPeople = (fetchParams?: {
   return useQuery({
     queryKey: ['fetchPeople', fetchParams],
     queryFn: async () => {
-      console.log('useFetchPeople');
       const { data: response } = await axios(__BASE_URL__, {
         params: fetchParams?.search
           ? { search: fetchParams.search }
