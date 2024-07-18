@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Flex } from 'antd';
-import { BreadCrump, BreadCrumpLink, NavLink, Spin } from '~ui';
+import { BreadCrump, BreadCrumpLink, Spin } from '~ui';
 import { EditOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import { useFetchPeopleDetail, useLocalStorageState } from '~hooks';

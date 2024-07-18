@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { BreadCrump, BreadCrumpLink, NavLink } from '~ui';
+import { BreadCrump, BreadCrumpLink } from '~ui';
 
 export const NotFound = () => {
   return (

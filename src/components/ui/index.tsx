@@ -4,7 +4,6 @@ export * from './input';
 export * from './layout';
 export * from './modal';
 export * from './pagination';
-export * from './nav-link';
 export * from './spin';
 export * from './auto-complete';
 export * from './breadcramb';
