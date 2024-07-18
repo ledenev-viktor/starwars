@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Flex } from 'antd';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 type NavLinkProps = {
   className?: string;

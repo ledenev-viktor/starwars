@@ -1,12 +1,12 @@
 import { Input as InputAntd } from 'antd';
 import styled from '@emotion/styled';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 export const Input = styled(InputAntd)`
   & {
     width: 100%;
-    height: 40px;
-    font-size: 16px;
+    height: 60px;
+    font-size: 25px;
     background: ${COLORS.lucentBlack};
     color: ${COLORS.white};
     

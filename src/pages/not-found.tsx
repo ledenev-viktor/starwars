@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { NavLink } from '../../components/ui';
+import { NavLink } from '~ui';
 
 export const NotFound = () => {
   return (

@@ -29,7 +29,7 @@ const BackgroundBase = ({
     <div
       className={className}
       style={{
-        backgroundImage: `url(${location.origin}/${backgrounds[backgroundIndex]})`,
+        backgroundImage: `url(/${backgrounds[backgroundIndex]})`,
       }}
     >
       {children}
@@ -43,4 +43,5 @@ export const Background = styled(BackgroundBase)`
   background-repeat: no-repeat;
   transition: all 1s ease;
   background-position: center;
+  background-attachment: fixed;
 `;

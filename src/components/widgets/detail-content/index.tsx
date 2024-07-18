@@ -1,24 +1,16 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Flex, Spin } from 'antd';
-import { Input, Modal, FormEdits, NavLink } from '../../ui';
+import { Button, Flex, Spin, Typography } from 'antd';
+import { NavLink } from '~ui';
 import { EditOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
-import { useFetchPeopleDetail } from '../../../api/hooks/useFetchPeopleDetail';
-import { useLocalStorageState } from '../../../hooks/useLocalStorageState';
-import { COLORS } from '../../../styles/variables';
+import { useFetchPeopleDetail, useLocalStorageState } from '~hooks';
+import { COLORS } from '~styles/variables';
+import { ModalHero } from './modalEdit';
+import { HeroProperty } from './hero-property';
 
 type DetailInfo = {
   [key: string]: string;
-};
-
-const detailSchema: DetailInfo = {
-  name: 'name',
-  mass: 'mass',
-  hair_color: 'hair color',
-  skin_color: 'skin color',
-  birth_year: 'birth year',
-  gender: 'gender',
 };
 
 const DetailContentBase = ({ className }: { className?: string }) => {
@@ -35,8 +27,7 @@ const DetailContentBase = ({ className }: { className?: string }) => {
   const [editData, setEditData] = useState<DetailInfo | null>(null);
 
   useEffect(() => {
-    if (detailDataState) return;
-    if (!detailData) return;
+    if (detailDataState || !detailData) return;
 
     setDetailDataState(detailData);
   }, [isLoadingDetail]);
@@ -48,6 +39,7 @@ const DetailContentBase = ({ className }: { className?: string }) => {
   }, [detailDataState]);
 
   const showModal = () => {
+    console.log('show', isModalOpen);
     setIsModalOpen(true);
   };
 
@@ -60,32 +52,44 @@ const DetailContentBase = ({ className }: { className?: string }) => {
     setIsModalOpen(false);
   };
 
-  const onChangeDetailState = (
-    event: ChangeEvent<HTMLInputElement>,
-    key: string,
-  ) => {
+  const onChangeDetailState = (value: string, key: string) => {
     if (!detailDataState) return;
     setEditData({
-      ...detailDataState,
-      [key]: event.target.value,
+      ...editData,
+      [key]: value,
     });
   };
 
   if (isLoadingDetail) {
-    return <Flex justify='center'><Spin/></Flex>;
+    return (
+      <Flex justify="center">
+        <Spin />
+      </Flex>
+    );
   }
 
   return (
     <Flex className={className} vertical>
       {detailDataState && (
-        <Flex style={{paddingRight: '50px'}} vertical>
-          {Object.entries(detailSchema).map(([key, value]) => (
-            <div key={key} style={{ color: '#fff', fontSize: '18px' }}>
-              <span>{value}: </span>
-              <span>{detailDataState[key]}</span>
-            </div>
-          ))}
-        </Flex>
+        <>
+          <Flex vertical>
+            <HeroProperty label="name" value={detailDataState.name} />
+            <HeroProperty label="mass" value={detailDataState.mass} />
+            <HeroProperty
+              label="hair color"
+              value={detailDataState.hair_color}
+            />
+            <HeroProperty
+              label="skin color"
+              value={detailDataState.skin_color}
+            />
+            <HeroProperty
+              label="birth year"
+              value={detailDataState.birth_year}
+            />
+            <HeroProperty label="gender" value={detailDataState.gender} />
+          </Flex>
+        </>
       )}
       <NavLink href={'/'}>Home</NavLink>
       {editData && (
@@ -93,25 +97,18 @@ const DetailContentBase = ({ className }: { className?: string }) => {
           <Button className="edit-button" onClick={showModal}>
             <EditOutlined />
           </Button>
-          <Modal
-            title="Edits"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <FormEdits
-              items={Object.entries(detailSchema)}
-              renderItem={([key, value]) => (
-                <div key={key}>
-                  <span>{value}: </span>
-                  <Input
-                    value={editData[key]}
-                    onChange={event => onChangeDetailState(event, key)}
-                  />
-                </div>
-              )}
-            />
-          </Modal>
+          <ModalHero
+            modalProps={{
+              title: 'Edits',
+              open: isModalOpen,
+              onOk: handleOk,
+              onCancel: handleCancel,
+            }}
+            contentProps={{
+              onChangeDetailState,
+              editData,
+            }}
+          />
         </>
       )}
     </Flex>

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Modal as ModalAntd } from 'antd';
-import { COLORS } from '../../../styles/variables';
+import { COLORS } from '~styles/variables';
 
 export const ModalBase = ({ className, children, ...otherProps }: any) => {
   return (
