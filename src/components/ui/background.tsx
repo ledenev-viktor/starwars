@@ -29,7 +29,7 @@ const BackgroundBase = ({
     <div
       className={className}
       style={{
-        backgroundImage: `url(/${backgrounds[backgroundIndex]})`,
+        backgroundImage: `url(${backgrounds[backgroundIndex]})`,
       }}
     >
       {children}

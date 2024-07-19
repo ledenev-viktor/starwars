@@ -9,7 +9,7 @@ import { Background } from './components/ui/index';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: __HOME_URL__,
     element: <Home />,
   },
   {
@@ -21,8 +21,6 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
-
-const backgrounds = ['bg1.webp', 'bg2.webp', 'bg3.webp'];
 
 function App() {
   const [queryClient] = useState(
@@ -38,7 +36,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Background backgrounds={backgrounds}>
+      <Background backgrounds={__BACKGROUNDS_IMG__}>
         <Layout>
           <Global styles={globalStyles} />
           <RouterProvider router={router} />
